@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Autobots>
+  <config name="Strawbary" LH="133" LS="72" LV="58" HH="246" HS="255" HV="255" WL="198" WR="511" WU="157" WD="388" TS="7500" TL="25000" MNM="7500" Dil="4" Erd="2" />
+  <config name="Lemon" LH="133" LS="72" LV="58" HH="246" HS="255" HV="255" WL="108" WR="432" WU="216" WD="460" TS="7500" TL="25000" MNM="7500" Dil="4" Erd="2" />
+  <config name="Brinjal" LH="133" LS="72" LV="58" HH="246" HS="255" HV="255" WL="108" WR="432" WU="216" WD="439" TS="7500" TL="25000" MNM="7500" Dil="4" Erd="2" />
+  <config name="Tomato" LH="133" LS="45" LV="87" HH="249" HS="255" HV="255" WL="108" WR="432" WU="216" WD="439" TS="7500" TL="25000" MNM="7500" Dil="4" Erd="2" />
+</Autobots>

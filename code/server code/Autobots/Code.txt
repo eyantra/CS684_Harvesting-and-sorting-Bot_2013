@@ -1,0 +1,58 @@
+ Code to find put the tomato with filtered image
+ 
+ using (MemStorage storage = new MemStorage())
+            {              
+                Contour<Point> contours = finalimage.FindContours(Emgu.CV.CvEnum.CHAIN_APPROX_METHOD.CV_CHAIN_APPROX_SIMPLE, Emgu.CV.CvEnum.RETR_TYPE.CV_RETR_LIST, storage);
+                Contour<Point> biggestContour = null;
+
+                
+                while (contours != null)
+                {
+                                            
+                       biggestContour = contours;
+                       hull= biggestContour.GetConvexHull(Emgu.CV.CvEnum.ORIENTATION.CV_CLOCKWISE);
+                     box=  hull.GetMinAreaRect();
+                    tomato tamatr=new tomato();
+                    tamatr.x=(int)box.center.X;
+                    tamatr.y=(int)box.center.Y;
+                    tamatr.h=(int)box.size.Height;
+                    tamatr.w=(int)box.size.Width;
+                    if (box.size.Height * box.size.Width > sizethreshold)
+                    {
+                        sare_tamatr.Add(tamatr);
+                        finalimage.Draw(box.MinAreaRect(), new Gray(255), 2); 
+                    }
+                    contours = contours.HNext;
+                    
+                }
+ 
+ 
+ 
+Code to find out the size and alignement of the tomato
+foreach (tomato ek_tamatar in process.sare_tamatr)
+                {
+                    main_img.Draw(new Rectangle(ek_tamatar.x - ek_tamatar.w / 2, ek_tamatar.y - ek_tamatar.h / 2, ek_tamatar.w, ek_tamatar.h), new Hsv(79, 209, 200), 2);
+                    if (inwindow(ek_tamatar))
+                    {
+
+                        main_img.Draw(new CircleF(new PointF((float)ek_tamatar.x, (float)ek_tamatar.y), (float)ek_tamatar.w / 2), new Hsv(255, 200, 200), -1);
+                        update((ek_tamatar.h * ek_tamatar.w).ToString());
+                       if(inTrough)
+                           if (ek_tamatar.w * ek_tamatar.h > nm_TS.Value && ek_tamatar.w * ek_tamatar.h<nm_TL.Value)
+                                    {
+                                        updateTmnl("\nSmall Tomato Detected-"+BOT.write("t") + "---" + (ek_tamatar.w * ek_tamatar.h).ToString());
+                                        inTrough = false;
+                                        
+
+                                    }
+                                    else if (ek_tamatar.w * ek_tamatar.h >= nm_TL.Value)
+                                    {
+                                        updateTmnl("\nBig Tomato Detected-" + BOT.write("T") + "---" + (ek_tamatar.w * ek_tamatar.h).ToString());
+                                        inTrough = false;
+                                    }
+                                
+
+                            
+                    }
+
+                }
